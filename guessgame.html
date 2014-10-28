@@ -1,0 +1,55 @@
+<html ng-app="Accenture">
+<head>
+	<script src="angular.min.js"></script>
+	<script src="jquery.min.js"></script>
+	<script>
+	var random;
+	var arr=[];
+	var attempts=0;
+	random=Math.round(Math.random()*100);
+	console.log(random);
+	angular.module("Accenture",[]).controller("sample",function($scope){
+		$scope.click1=function(){
+			 if($scope.guess>random){
+     	$scope.head="aim lower ";
+     }
+     else if($scope.guess<random){
+     	$scope.head="aim higher ";
+     }
+      else{
+      	$scope.head="u gt it ";
+      }
+      arr.push($scope.guess);
+      
+      displayhistory($scope);
+
+		};
+    
+	});
+     function displayhistory($scope){
+     	var app="";
+     	for(var i=0;i<arr.length;i++){
+     	app+="<tr><td>"+i+"</td><td>"+arr[i]+"</td></tr>";
+     }
+    $("#nath").html(app);
+     }
+
+
+	</script>
+	<title> Angular js </title>
+
+</head>
+<body ng-controller="sample">
+	<h1>GUESSING GAME </h1>
+	<input type="text" ng-model="guess" placeholder="guesss fucker ">
+	<input type="button" value="guess fucker" ng-model="btn1" ng-click="click1()">
+    <h1 ng-model="head">{{head}}</h1>
+    <table border="1">
+    	<tr>
+    <th>Attempts</th>
+    <th>Numbers</th>
+    </tr>
+    <tbody id="nath"></tbody>
+    </table>
+</body>
+</html>
